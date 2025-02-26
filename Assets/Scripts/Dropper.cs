@@ -3,10 +3,16 @@ using UnityEngine;
 public class Dropper : MonoBehaviour
 {
     [SerializeField] private float _timeToWait = 2f;
+    MeshRenderer meshRenderer;
+    Rigidbody rigidbody;
 
     void Start()
     {
-        
+        meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer.enabled = false;
+
+        rigidbody = GetComponent<Rigidbody>();
+        rigidbody.useGravity = false;
     }
 
     
@@ -14,7 +20,8 @@ public class Dropper : MonoBehaviour
     {
         if (Time.time > _timeToWait)
         {
-            Debug.Log("Look out below!");
+            meshRenderer.enabled = true;
+            rigidbody.useGravity = true;
         }
     }
 }
